@@ -9,4 +9,8 @@ export class Ahorcado {
         const cantidadLetras = this.palabra.length;
         return `La palabra tiene ${cantidadLetras} letras`;
     }
+
+    arriesgarLetra(l: string): boolean{
+        return this.palabra.includes(l)
+    }
 }

@@ -8,3 +8,13 @@ describe("Ahorcado", () => {
     expect(resultado).toBe("La palabra tiene 5 letras");
   });
 });
+
+
+describe("Arriesgar letra correcta", ()=>{
+  it("debería leer una letra y responder que sí está palabra", ()=>{
+    const juego = new Ahorcado("SCRUM");
+    const resultado = juego.arriesgarLetra('U')
+    expect(resultado).toBe(true)
+})
+
+})
