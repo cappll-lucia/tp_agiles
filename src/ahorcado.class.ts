@@ -1,17 +1,16 @@
-import { Jugador } from "./juggador.class";
+import { Jugador } from "./jugador.class";
 
 export class Ahorcado {
-  constructor(_jugador: Jugador) {
-    this.jugador= _jugador
+  constructor(_jugador: Jugador, private letrasArriesgadas: string[] = []) {
+    this.jugador = _jugador;
   }
+  private palabra: string;
+  private jugador: Jugador;
+  private progreso: string[];
 
-  private palabra: string
-  private jugador: Jugador
-  private progreso: string[]
-
-  ingresarPalabra(palabra: string){
+  ingresarPalabra(palabra: string) {
     this.palabra = palabra;
-    this.progreso = new Array(palabra.length).fill('_');
+    this.progreso = new Array(palabra.length).fill("_");
   }
 
   iniciarJuego(): string {
@@ -20,19 +19,20 @@ export class Ahorcado {
   }
 
   arriesgarLetra(l: string): boolean {
+    this.letrasArriesgadas.push(l);
     let encontrada = this.palabra.includes(l);
-    if(encontrada){
-      this.palabra.split('').forEach((char, index) => {
+    if (encontrada) {
+      this.palabra.split("").forEach((char, index) => {
         if (char === l) {
-          this.progreso[index] = l;  
+          this.progreso[index] = l;
         }
       });
     }
     return encontrada;
   }
 
-  verProgreso(){
-    return this.progreso.toString().replace(/,/g, ' ');
+  verProgreso() {
+    return this.progreso.toString().replace(/,/g, " ");
   }
 
   obtenerPosicionesLetra(letra) {
@@ -46,7 +46,6 @@ export class Ahorcado {
   }
 
   restarVida(): number {
-      return this.jugador.restarVida();
+    return this.jugador.restarVida();
   }
-
 }
