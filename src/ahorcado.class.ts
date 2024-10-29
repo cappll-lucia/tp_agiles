@@ -18,7 +18,13 @@ export class Ahorcado {
     return `La palabra tiene ${cantidadLetras} letras`;
   }
 
-  arriesgarLetra(l: string): boolean {
+  verificarSiYaFueArriesgada(l: string): boolean {
+    return this.letrasArriesgadas.includes(l);
+  }
+
+  arriesgarLetra(l: string): ResultadoArrisgarLetra {
+    if (this.verificarSiYaFueArriesgada(l))
+      return ResultadoArrisgarLetra.LetraYaArriesgada;
     this.letrasArriesgadas.push(l);
     let encontrada = this.palabra.includes(l);
     if (encontrada) {
@@ -27,8 +33,11 @@ export class Ahorcado {
           this.progreso[index] = l;
         }
       });
+      return ResultadoArrisgarLetra.LetraCorrecta;
+    } else {
+      this.jugador.restarVida();
+      return ResultadoArrisgarLetra.LetraIncorrecta;
     }
-    return encontrada;
   }
 
   verProgreso() {
@@ -44,8 +53,16 @@ export class Ahorcado {
     });
     return posiciones;
   }
-
+  mostrarLetrasArriesgadas(): string[] {
+    return this.letrasArriesgadas;
+  }
   restarVida(): number {
     return this.jugador.restarVida();
   }
+}
+
+export enum ResultadoArrisgarLetra {
+  LetraCorrecta,
+  LetraIncorrecta,
+  LetraYaArriesgada,
 }

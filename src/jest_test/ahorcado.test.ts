@@ -1,5 +1,5 @@
 import { describe, expect, test } from "@jest/globals";
-import { Ahorcado } from "../ahorcado.class";
+import { Ahorcado, ResultadoArrisgarLetra } from "../ahorcado.class";
 import { Jugador } from "../jugador.class";
 
 describe("Ahorcado", () => {
@@ -18,7 +18,7 @@ describe("Arriesgar letra correcta", () => {
     const juego = new Ahorcado(jugador);
     juego.ingresarPalabra("SCRUM");
     const resultado = juego.arriesgarLetra("U");
-    expect(resultado).toBe(true);
+    expect(resultado).toBe(ResultadoArrisgarLetra.LetraCorrecta);
   });
 });
 
@@ -28,7 +28,7 @@ describe("Arriesgar letra incorrecta", () => {
     const juego = new Ahorcado(jugador);
     juego.ingresarPalabra("SCRUM");
     const resultado = juego.arriesgarLetra("A");
-    expect(resultado).toBe(false);
+    expect(resultado).toBe(ResultadoArrisgarLetra.LetraIncorrecta);
   });
 });
 
@@ -60,4 +60,26 @@ describe("Ver progreso de palabra al ingresar una letra correcta", () => {
   juego.arriesgarLetra("C");
   const progreso = juego.verProgreso();
   expect(progreso).toEqual("_ C _ _ _");
+});
+
+describe("Mostrar letras arriesgadas", () => {
+  it("deberia devolver las letras arriesgadas", () => {
+    const juego = new Ahorcado(new Jugador("Facu"));
+    juego.ingresarPalabra("SCRUM");
+    juego.arriesgarLetra("U");
+    juego.arriesgarLetra("A");
+    const letrasArriesgadas = juego.mostrarLetrasArriesgadas();
+    expect(letrasArriesgadas).toEqual(["U", "A"]);
+  });
+});
+
+describe("Alertar que esa letra ya fue ingresada", () => {
+  it("deberia devolver un mensaje de alerta", () => {
+    const juego = new Ahorcado(new Jugador("Facu"));
+    juego.ingresarPalabra("SCRUM");
+    juego.arriesgarLetra("U");
+    let resultado: ResultadoArrisgarLetra;
+    resultado = juego.arriesgarLetra("U");
+    expect(resultado).toEqual(ResultadoArrisgarLetra.LetraYaArriesgada);
+  });
 });
