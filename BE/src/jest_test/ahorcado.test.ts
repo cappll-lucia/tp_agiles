@@ -1,14 +1,14 @@
 import { describe, expect, test } from "@jest/globals";
-import { Ahorcado, ResultadoArrisgarLetra } from "../ahorcado.class";
-import { Jugador } from "../jugador.class";
+import { Ahorcado, ResultadoArrisgarLetra } from "../classes/ahorcado.class";
+import { Jugador } from "../classes/jugador.class";
 
 describe("Ahorcado", () => {
   it("debería iniciar el juego y devolver la cantidad de letras de la palabra", () => {
     const jugador = new Jugador("Lu");
     const juego = new Ahorcado(jugador);
-    juego.ingresarPalabra("SCRUM");
     const resultado = juego.iniciarJuego();
-    expect(resultado).toBe("La palabra tiene 5 letras");
+    const palabra = juego.verProgreso().replace(/ /g, "")
+    expect(resultado).toBe(`La palabra tiene ${palabra.length} letras`);
   });
 });
 
