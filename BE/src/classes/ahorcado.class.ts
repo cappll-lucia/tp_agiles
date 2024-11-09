@@ -1,58 +1,69 @@
+import { AutoMap } from "@automapper/classes";
 import { Jugador } from "./jugador.class";
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 export class Ahorcado {
-    private palabra: string;
-    private jugador: Jugador;
-    private progreso: string[];
-    private letrasArriesgadas: string[];
-    
-  constructor(_jugador: Jugador) {
-    this.jugador = _jugador;
-    this.palabra = faker.commerce.product()
-    this.progreso = new Array(this.palabra.length).fill("_");
-    this.letrasArriesgadas = [];
+  @AutoMap()
+  private _palabra: string;
+  @AutoMap(() => Jugador)
+  private _jugador: Jugador;
+  @AutoMap()
+  private _progreso: string[];
+  @AutoMap()
+  private _letrasArriesgadas: string[];
+
+  constructor(
+    jugador: Jugador,
+    palabra: string = faker.lorem.word(),
+    progreso: string[] = new Array(palabra.length).fill("_"),
+    letrasArriesgadas: string[] = []
+  ) {
+    this._jugador = jugador;
+    this._palabra = palabra;
+    this._progreso = progreso;
+    this._letrasArriesgadas = letrasArriesgadas;
   }
 
   ingresarPalabra(palabra: string) {
-    this.palabra = palabra;
-    this.progreso = new Array(palabra.length).fill("_");
+    this._palabra = palabra;
+    this._progreso = new Array(palabra.length).fill("_");
   }
 
-  iniciarJuego(): string {
-    const cantidadLetras = this.palabra.length;
-    return `La palabra tiene ${cantidadLetras} letras`;
+  iniciarJuego(): number {
+    //BORRAR
+    console.log(this._palabra);
+    return this._palabra.length;
   }
 
   verificarSiYaFueArriesgada(l: string): boolean {
-    return this.letrasArriesgadas.includes(l);
+    return this._letrasArriesgadas.includes(l);
   }
 
   arriesgarLetra(l: string): ResultadoArrisgarLetra {
     if (this.verificarSiYaFueArriesgada(l))
       return ResultadoArrisgarLetra.LetraYaArriesgada;
-    this.letrasArriesgadas.push(l);
-    let encontrada = this.palabra.includes(l);
+    this._letrasArriesgadas.push(l);
+    let encontrada = this._palabra.includes(l);
     if (encontrada) {
-      this.palabra.split("").forEach((char, index) => {
+      this._palabra.split("").forEach((char, index) => {
         if (char === l) {
-          this.progreso[index] = l;
+          this._progreso[index] = l;
         }
       });
       return ResultadoArrisgarLetra.LetraCorrecta;
     } else {
-      this.jugador.restarVida();
+      this._jugador.restarVida();
       return ResultadoArrisgarLetra.LetraIncorrecta;
     }
   }
 
   verProgreso() {
-    return this.progreso.toString().replace(/,/g, " ");
+    return this._progreso.toString().replace(/,/g, " ");
   }
 
-  obtenerPosicionesLetra(letra:string) {
+  obtenerPosicionesLetra(letra: string) {
     const posiciones: number[] = [];
-    this.palabra.split("").forEach((char, index) => {
+    this._palabra.split("").forEach((char, index) => {
       if (char === letra) {
         posiciones.push(index);
       }
@@ -60,10 +71,28 @@ export class Ahorcado {
     return posiciones;
   }
   mostrarLetrasArriesgadas(): string[] {
-    return this.letrasArriesgadas;
+    return this._letrasArriesgadas;
   }
   restarVida(): number {
-    return this.jugador.restarVida();
+    return this._jugador.restarVida();
+  }
+
+  getJugador(): Jugador {
+    return this._jugador;
+  }
+  getPalabra(): string {
+    return this._palabra;
+  }
+
+  //Map
+  // Método estático que convierte un objeto plano en una instancia de Ahorcado
+  static fromPlainObject(data: any): Ahorcado {
+    const jugador = new Jugador(data._jugador?._nombre, data._jugador?._vidas);
+    const palabra = data._palabra ?? "";
+    const progreso = data._progreso ?? new Array(palabra.length).fill("_");
+    const letrasArriesgadas = data._letrasArriesgadas ?? [];
+
+    return new Ahorcado(jugador, palabra, progreso, letrasArriesgadas);
   }
 }
 
