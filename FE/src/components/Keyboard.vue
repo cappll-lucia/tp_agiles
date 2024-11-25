@@ -5,18 +5,18 @@ defineProps({
     letrasUsadas: Array
 });
 
-const emit = defineEmits(['letterGuess']);
+const emit = defineEmits(['adivinarLetra']);
 
 const letras = ref('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''));
 
-function guessLetter(letter) {
-    emit('letterGuess', letter);
+function adivinarLetra(letter) {
+    emit('adivinarLetra', letter);
 }
 </script>
 
 <template>
     <div class="keyboard">
-        <button v-for="letra in letras" :key="letra" @click="guessLetter(letra)"
+        <button v-for="letra in letras" :key="letra" @click="adivinarLetra(letra)"
             :disabled="letrasUsadas.includes(letra)" class="keyboard__button">
             {{ letra }}
         </button>

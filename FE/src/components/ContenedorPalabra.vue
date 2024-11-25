@@ -2,15 +2,18 @@
     import { defineProps } from 'vue';
 
     defineProps({
-        palabra: String,
+        progreso: Array,
+        cantLetras: Number,
         letrasCorrectas: Array
     });
+
+
 </script>
 
 <template>
     <div class="cont-palabra">
-        <span v-for="letra in palabra" :key="letra">
-            {{ letrasCorrectas.includes(letra) ? letra : '_' }}
+        <span v-for="(letra, index) in progreso" :key="index">
+            {{ letra }}
         </span>
     </div>
 </template>

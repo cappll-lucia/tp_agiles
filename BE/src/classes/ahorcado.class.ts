@@ -14,7 +14,7 @@ export class Ahorcado {
 
   constructor(
     jugador: Jugador,
-    palabra: string = faker.lorem.word(),
+    palabra: string = faker.lorem.word().toUpperCase(),
     progreso: string[] = new Array(palabra.length).fill("_"),
     letrasArriesgadas: string[] = []
   ) {
@@ -30,8 +30,7 @@ export class Ahorcado {
   }
 
   iniciarJuego(): number {
-    //BORRAR
-    console.log(this._palabra);
+    console.log(this._palabra)
     return this._palabra.length;
   }
 
@@ -58,7 +57,7 @@ export class Ahorcado {
   }
 
   verProgreso() {
-    return this._progreso.toString().replace(/,/g, " ");
+    return this._progreso;
   }
 
   obtenerPosicionesLetra(letra: string) {

@@ -21,12 +21,12 @@ export const arriesgarLetra = (req: Request, res: Response) => {
   const resultado = juego.arriesgarLetra(letra);
   req.session.gameState.juego = juego;
   res.json({
-    palabra: juego.getPalabra(),
     jugador: juego.getJugador(),
     resultado: ResultadoArrisgarLetra[resultado],
     progreso: juego.verProgreso(),
     letrasArriesgadas: juego.mostrarLetrasArriesgadas(),
     vidasRestantes: juego.getJugador().getVidas(),
+    gano: !juego.verProgreso().includes('_')
   });
 };
 
