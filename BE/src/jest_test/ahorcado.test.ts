@@ -7,8 +7,8 @@ describe("Ahorcado", () => {
     const jugador = new Jugador("Lu");
     const juego = new Ahorcado(jugador);
     const resultado = juego.iniciarJuego();
-    const palabra = juego.verProgreso().replace(/ /g, "")
-    expect(resultado).toBe(`La palabra tiene ${palabra.length} letras`);
+    const palabra = juego.verProgreso();
+    expect(resultado).toBe(palabra.length);
   });
 });
 
@@ -59,7 +59,7 @@ describe("Ver progreso de palabra al ingresar una letra correcta", () => {
   juego.ingresarPalabra("SCRUM");
   juego.arriesgarLetra("C");
   const progreso = juego.verProgreso();
-  expect(progreso).toEqual("_ C _ _ _");
+  expect(progreso).toEqual(["_", "C", "_", "_", "_"]);
 });
 
 describe("Mostrar letras arriesgadas", () => {
