@@ -83,3 +83,13 @@ describe("Alertar que esa letra ya fue ingresada", () => {
     expect(resultado).toEqual(ResultadoArrisgarLetra.LetraYaArriesgada);
   });
 });
+
+describe("Jugar con plalabra ingresada y obtener progreso", () => {
+  it("debería permitir ingresar una palabra personalizada y actualizar el progreso", () => {
+    const jugador = new Jugador("Lu");
+    const juego = new Ahorcado(jugador);
+    juego.ingresarPalabra("CODIGO");
+    expect(juego.getPalabra()).toBe("CODIGO");
+    expect(juego.verProgreso()).toEqual(["_", "_", "_", "_", "_", "_"]);
+  });
+});

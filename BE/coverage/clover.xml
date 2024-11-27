@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732572798681" clover="3.2.0">
-  <project timestamp="1732572798681" name="All files">
-    <metrics statements="55" coveredstatements="46" conditionals="17" coveredconditionals="11" methods="19" coveredmethods="14" elements="91" coveredelements="71" complexity="0" loc="55" ncloc="55" packages="1" files="2" classes="2"/>
+<coverage generated="1732707736961" clover="3.2.0">
+  <project timestamp="1732707736961" name="All files">
+    <metrics statements="55" coveredstatements="47" conditionals="17" coveredconditionals="11" methods="19" coveredmethods="15" elements="91" coveredelements="73" complexity="0" loc="55" ncloc="55" packages="1" files="2" classes="2"/>
     <file name="ahorcado.class.ts" path="/home/lucia/Documents/ISI_5to/Agiles/tp/BE/src/classes/ahorcado.class.ts">
-      <metrics statements="48" coveredstatements="40" conditionals="16" coveredconditionals="10" methods="16" coveredmethods="12"/>
+      <metrics statements="48" coveredstatements="41" conditionals="16" coveredconditionals="10" methods="16" coveredmethods="13"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
@@ -13,12 +13,12 @@
       <line num="9" count="1" type="stmt"/>
       <line num="11" count="1" type="stmt"/>
       <line num="13" count="1" type="stmt"/>
-      <line num="21" count="8" type="stmt"/>
-      <line num="22" count="8" type="stmt"/>
-      <line num="23" count="8" type="stmt"/>
-      <line num="24" count="8" type="stmt"/>
-      <line num="28" count="7" type="stmt"/>
-      <line num="29" count="7" type="stmt"/>
+      <line num="21" count="9" type="stmt"/>
+      <line num="22" count="9" type="stmt"/>
+      <line num="23" count="9" type="stmt"/>
+      <line num="24" count="9" type="stmt"/>
+      <line num="28" count="8" type="stmt"/>
+      <line num="29" count="8" type="stmt"/>
       <line num="33" count="1" type="stmt"/>
       <line num="34" count="1" type="stmt"/>
       <line num="38" count="7" type="stmt"/>
@@ -33,7 +33,7 @@
       <line num="52" count="4" type="stmt"/>
       <line num="54" count="2" type="stmt"/>
       <line num="55" count="2" type="stmt"/>
-      <line num="60" count="2" type="stmt"/>
+      <line num="60" count="3" type="stmt"/>
       <line num="64" count="1" type="stmt"/>
       <line num="65" count="1" type="stmt"/>
       <line num="66" count="5" type="cond" truecount="1" falsecount="0"/>
@@ -42,7 +42,7 @@
       <line num="73" count="1" type="stmt"/>
       <line num="76" count="1" type="stmt"/>
       <line num="80" count="0" type="stmt"/>
-      <line num="83" count="0" type="stmt"/>
+      <line num="83" count="1" type="stmt"/>
       <line num="89" count="0" type="stmt"/>
       <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
       <line num="91" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -59,7 +59,7 @@
       <line num="3" count="1" type="stmt"/>
       <line num="5" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
-      <line num="9" count="8" type="stmt"/>
+      <line num="9" count="9" type="stmt"/>
       <line num="13" count="3" type="stmt"/>
       <line num="18" count="0" type="stmt"/>
     </file>
