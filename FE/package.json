@@ -13,15 +13,21 @@
   },
   "dependencies": {
     "axios": "^1.7.7",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "pinia": "^2.2.4",
     "vue": "^3.5.12"
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.3",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
     "@eslint/js": "^9.13.0",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vitest/eslint-plugin": "1.1.7",
     "@vue/eslint-config-prettier": "^10.0.0",
     "@vue/test-utils": "^2.4.6",
+    "cucumber": "^6.0.7",
+    "cypress": "^13.16.0",
+    "esbuild": "^0.24.0",
     "eslint": "^9.13.0",
     "eslint-plugin-vue": "^9.29.0",
     "jsdom": "^25.0.1",

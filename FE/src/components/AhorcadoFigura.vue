@@ -9,17 +9,17 @@ import { defineProps } from 'vue';
 <template>
     <div>
         <div class="vidas">
-            <p>Vidas Restantes: {{ vidasRestantes }}</p>
+            <p data-testid="vidas">Vidas Restantes: {{ vidasRestantes }}</p>
             <div class="vidas-iconos">
                 <img v-for="vida in vidasRestantes" :key="vida" src="../assets/me-gusta.png" height="20px" />
             </div>
         </div>
         <div class="hangman">
             <!-- Cada una de estas partes se muestra solo cuando vidasRestantes es mayor o igual al valor correspondiente -->
-            <div  class="hangman__base"></div>
-            <div  class="hangman__pole"></div>
-            <div  class="hangman__beam"></div>
-            <div  class="hangman__rope"></div>
+            <div class="hangman__base"></div>
+            <div class="hangman__pole"></div>
+            <div class="hangman__beam"></div>
+            <div class="hangman__rope"></div>
             <div v-if="vidasRestantes <= 5" class="hangman__head"></div>
             <div v-if="vidasRestantes <= 4" class="hangman__body"></div>
             <div v-if="vidasRestantes <= 3" class="hangman__left-arm"></div>

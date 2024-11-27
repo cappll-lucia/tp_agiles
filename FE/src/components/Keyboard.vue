@@ -17,7 +17,7 @@ function adivinarLetra(letter) {
 <template>
     <div class="keyboard">
         <button v-for="letra in letras" :key="letra" @click="adivinarLetra(letra)"
-            :disabled="letrasUsadas.includes(letra)" class="keyboard__button">
+            :disabled="letrasUsadas.includes(letra)" class="keyboard__button" :data-testid="'tecla-' + letra">
             {{ letra }}
         </button>
     </div>

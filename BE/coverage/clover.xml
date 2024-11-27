@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732707736961" clover="3.2.0">
-  <project timestamp="1732707736961" name="All files">
+<coverage generated="1732744461607" clover="3.2.0">
+  <project timestamp="1732744461607" name="All files">
     <metrics statements="55" coveredstatements="47" conditionals="17" coveredconditionals="11" methods="19" coveredmethods="15" elements="91" coveredelements="73" complexity="0" loc="55" ncloc="55" packages="1" files="2" classes="2"/>
     <file name="ahorcado.class.ts" path="/home/lucia/Documents/ISI_5to/Agiles/tp/BE/src/classes/ahorcado.class.ts">
       <metrics statements="48" coveredstatements="41" conditionals="16" coveredconditionals="10" methods="16" coveredmethods="13"/>

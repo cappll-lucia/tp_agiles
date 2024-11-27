@@ -11,7 +11,7 @@
 </script>
 
 <template>
-    <div class="cont-palabra">
+    <div class="cont-palabra" data-testid="progreso-palabra">
         <span v-for="(letra, index) in progreso" :key="index">
             {{ letra }}
         </span>
