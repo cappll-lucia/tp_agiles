@@ -1,10 +1,6 @@
-import { AutoMap } from "@automapper/classes";
-
 export class Jugador {
-  @AutoMap()
-  public _nombre: string;
-  @AutoMap()
-  public _vidas: number;
+  private _nombre: string;
+  private _vidas: number;
   constructor(nombre: string, vidas: number = 6) {
     (this._nombre = nombre), (this._vidas = vidas);
   }
@@ -16,5 +12,8 @@ export class Jugador {
   //TODO: Test
   getVidas(): number {
     return this._vidas;
+  }
+  getNombre(): string {
+    return this._nombre;
   }
 }

@@ -1,15 +1,10 @@
-import { AutoMap } from "@automapper/classes";
 import { Jugador } from "./jugador.class";
 import { faker } from "@faker-js/faker";
 
 export class Ahorcado {
-  @AutoMap()
   private _palabra: string;
-  @AutoMap(() => Jugador)
   private _jugador: Jugador;
-  @AutoMap()
   private _progreso: string[];
-  @AutoMap()
   private _letrasArriesgadas: string[];
 
   constructor(
@@ -30,7 +25,7 @@ export class Ahorcado {
   }
 
   iniciarJuego(): number {
-    console.log(this._palabra)
+    console.log(this._palabra);
     return this._palabra.length;
   }
 

@@ -23,7 +23,10 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:5173",
     specPattern: 'cypress/e2e/*.feature',
-    stepDefinitions: 'cypress/support/step_definitions/*.js',
+    stepDefinitions: [
+      "cypress/e2e/**/*.{js,mjs,ts,tsx}",
+      "cypress/support/step_definitions/**/*.{js,mjs,ts,tsx}"
+  ],
     setupNodeEvents,
   },
 });

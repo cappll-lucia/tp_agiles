@@ -93,3 +93,60 @@ describe("Jugar con plalabra ingresada y obtener progreso", () => {
     expect(juego.verProgreso()).toEqual(["_", "_", "_", "_", "_", "_"]);
   });
 });
+
+describe("Obtener vidas", () => {
+  it("debería devolver la cantidad de vidas actuales del jugador", () => {
+    const jugador = new Jugador("Lu", 5);
+    const vidas = jugador.getVidas();
+    expect(vidas).toBe(5);
+  });
+});
+
+describe("Obtener Nombre", () => {
+  it("debería devolver el nombre  del jugador", () => {
+    const jugador = new Jugador("Lu", 5);
+    const vidas = jugador.getNombre();
+    expect(vidas).toBe("Lu");
+  });
+});
+
+describe("Convertir objeto plano en instancia de Ahorcado", () => {
+  it("debería convertir un objeto plano en una instancia de Ahorcado", () => {
+    const data = {
+      _jugador: { _nombre: "Lu", _vidas: 4 },
+      _palabra: "TEST",
+      _progreso: ["_", "_", "_", "_"],
+      _letrasArriesgadas: ["T"],
+    };
+
+    const juego = Ahorcado.fromPlainObject(data);
+    expect(juego.getJugador().getNombre()).toBe("Lu");
+    expect(juego.getJugador().getVidas()).toBe(4);
+    expect(juego.getPalabra()).toBe("TEST");
+    expect(juego.verProgreso()).toEqual(["_", "_", "_", "_"]);
+    expect(juego.mostrarLetrasArriesgadas()).toEqual(["T"]);
+  });
+
+  it("debería manejar datos incompletos y asignar valores predeterminados", () => {
+    const data = {
+      _jugador: { _nombre: "Facu" },
+    };
+
+    const juego = Ahorcado.fromPlainObject(data);
+    expect(juego.getJugador().getNombre()).toBe("Facu");
+    expect(juego.getJugador().getVidas()).toBe(6); // Valor predeterminado de vidas
+    expect(juego.getPalabra()).toBe("");
+    expect(juego.verProgreso()).toEqual([]);
+    expect(juego.mostrarLetrasArriesgadas()).toEqual([]);
+  });
+});
+
+describe("Obtener jugador", () => {
+  it("debería devolver la instancia del jugador asociada al juego", () => {
+    const jugador = new Jugador("Lu", 3);
+    const juego = new Ahorcado(jugador);
+    const resultado = juego.getJugador();
+    expect(resultado.getNombre()).toBe("Lu");
+    expect(resultado.getVidas()).toBe(3);
+  });
+});
