@@ -18,16 +18,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Open BE folder
-        run: cd BE/
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
+        working-directory: BE
         run: npm install
 
-      - name: Run tests
+      - name: Run BE tests
+        working-directory: BE
         run: npm test -- --coverage
