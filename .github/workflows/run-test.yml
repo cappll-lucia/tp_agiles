@@ -1,18 +1,23 @@
-name: Run Tests
+name: Conditional Run Tests
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - "BE/**"
+      - "FE/**"
   pull_request:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - "BE/**"
+      - "FE/**"
 
 jobs:
-  test:
+  backend-tests:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'BE/') }}
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.16]
 
     steps:
       - name: Checkout repository
@@ -21,12 +26,33 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20.16
 
-      - name: Install dependencies
+      - name: Install BE dependencies
         working-directory: BE
         run: npm install
 
       - name: Run BE tests
         working-directory: BE
         run: npm test -- --coverage
+
+  frontend-tests:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'FE/') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.16
+
+      - name: Install FE dependencies
+        working-directory: FE
+        run: npm install
+
+      - name: Run Cypress tests
+        working-directory: FE
+        run: npx cypress run
