@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "start": "node index.js",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
