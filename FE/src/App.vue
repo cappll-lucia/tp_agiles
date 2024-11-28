@@ -8,7 +8,7 @@ import { iniciarJuego, registrarJugador, arriesgarLetra } from '@/api'
 const cantLetras = ref(0)
 const letrasCorrectas = ref([])
 const progreso = ref([])
-const vidasRestantes = ref(6) // Máximo de vidas = 6
+const vidasRestantes = ref(6) // Max vidas = 6
 const letrasUsadas = ref([])
 const nombreIngresado = ref(false)
 const registrado = ref(false)
