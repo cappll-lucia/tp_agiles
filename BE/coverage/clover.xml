@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1732748252703" clover="3.2.0">
-  <project timestamp="1732748252703" name="All files">
-    <metrics statements="48" coveredstatements="48" conditionals="19" coveredconditionals="19" methods="20" coveredmethods="20" elements="87" coveredelements="87" complexity="0" loc="48" ncloc="48" packages="1" files="2" classes="2"/>
-    <file name="ahorcado.class.ts" path="C:\Users\frbra\Desktop\Facultad\Agiles\TP\tp_agiles\BE\src\classes\ahorcado.class.ts">
-      <metrics statements="43" coveredstatements="43" conditionals="18" coveredconditionals="18" methods="16" coveredmethods="16"/>
+<coverage generated="1732833534970" clover="3.2.0">
+  <project timestamp="1732833534970" name="All files">
+    <metrics statements="46" coveredstatements="46" conditionals="31" coveredconditionals="29" methods="19" coveredmethods="19" elements="96" coveredelements="94" complexity="0" loc="46" ncloc="46" packages="1" files="2" classes="2"/>
+    <file name="ahorcado.class.ts" path="/home/lucia/Documents/ISI_5to/Agiles/tp/BE/src/classes/ahorcado.class.ts">
+      <metrics statements="41" coveredstatements="41" conditionals="30" coveredconditionals="28" methods="15" coveredmethods="15"/>
       <line num="1" count="1" type="stmt"/>
-      <line num="2" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
       <line num="16" count="12" type="stmt"/>
       <line num="17" count="12" type="stmt"/>
@@ -37,18 +36,17 @@
       <line num="71" count="1" type="stmt"/>
       <line num="75" count="5" type="stmt"/>
       <line num="78" count="3" type="stmt"/>
-      <line num="84" count="2" type="stmt"/>
-      <line num="85" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="86" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="87" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="84" count="2" type="cond" truecount="6" falsecount="2"/>
+      <line num="85" count="2" type="cond" truecount="4" falsecount="0"/>
+      <line num="86" count="2" type="cond" truecount="4" falsecount="0"/>
+      <line num="87" count="2" type="cond" truecount="4" falsecount="0"/>
       <line num="89" count="2" type="stmt"/>
       <line num="93" count="1" type="cond" truecount="2" falsecount="0"/>
       <line num="94" count="1" type="stmt"/>
       <line num="95" count="1" type="stmt"/>
       <line num="96" count="1" type="stmt"/>
-      <line num="104" count="1" type="cond" truecount="2" falsecount="0"/>
     </file>
-    <file name="jugador.class.ts" path="C:\Users\frbra\Desktop\Facultad\Agiles\TP\tp_agiles\BE\src\classes\jugador.class.ts">
+    <file name="jugador.class.ts" path="/home/lucia/Documents/ISI_5to/Agiles/tp/BE/src/classes/jugador.class.ts">
       <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="4" coveredmethods="4"/>
       <line num="1" count="1" type="stmt"/>
       <line num="5" count="14" type="stmt"/>
