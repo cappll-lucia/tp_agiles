@@ -1,32 +1,30 @@
+import { defineConfig } from 'cypress'
+import createBundler from '@bahmutov/cypress-esbuild-preprocessor'
+import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-preprocessor'
+import { createEsbuildPlugin } from '@badeball/cypress-cucumber-preprocessor/esbuild'
 
-import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
-import createBundler from "@bahmutov/cypress-esbuild-preprocessor";
-import { defineConfig } from "cypress";
-
-
-import { createEsbuildPlugin } from "@badeball/cypress-cucumber-preprocessor/esbuild";
-
-async function setupNodeEvents(on, config){
-  await addCucumberPreprocessorPlugin(on, config);
+export async function setupNodeEvents(on, config) {
+  // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
+  await addCucumberPreprocessorPlugin(on, config)
 
   on(
-    "file:preprocessor",
+    'file:preprocessor',
     createBundler({
       plugins: [createEsbuildPlugin(config)],
-    })
-  );
+    }),
+  )
 
-  return config;
+  // Make sure to return the config object as it might have been modified by the plugin.
+  return config
 }
 
 export default defineConfig({
   e2e: {
-    baseUrl: "http://localhost:5173",
-    specPattern: 'cypress/e2e/*.feature',
-    stepDefinitions: [
-      "cypress/e2e/**/*.{js,mjs,ts,tsx}",
-      "cypress/support/step_definitions/**/*.{js,mjs,ts,tsx}"
-  ],
+    baseUrl: 'http://localhost:5173',
+    specPattern: '**/*.feature',
     setupNodeEvents,
+    env: {
+      backendUrl: 'http://localhost:3000/api/ahorcado', // URL del backend
+    },
   },
-});
+})

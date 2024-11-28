@@ -9,7 +9,7 @@ export class Ahorcado {
 
   constructor(
     jugador: Jugador,
-    palabra: string = faker.lorem.word().toUpperCase(),
+    palabra: string = "SCRUM", //faker.lorem.word().toUpperCase(),
     progreso: string[] = new Array(palabra.length).fill("_"),
     letrasArriesgadas: string[] = []
   ) {

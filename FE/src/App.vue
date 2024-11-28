@@ -1,91 +1,105 @@
 <script setup>
-import { ref } from 'vue';
-import Juego from './components/Juego.vue';
-import ContenedorPalabra from './components/ContenedorPalabra.vue';
+import { ref } from 'vue'
+import Juego from './components/Juego.vue'
+import ContenedorPalabra from './components/ContenedorPalabra.vue'
 import Keyboard from './components/Keyboard.vue'
-import {iniciarJuego, registrarJugador, arriesgarLetra} from '@/api'
+import { iniciarJuego, registrarJugador, arriesgarLetra } from '@/api'
 
-
-const cantLetras = ref(0);
-const letrasCorrectas = ref([]);
+const cantLetras = ref(0)
+const letrasCorrectas = ref([])
 const progreso = ref([])
-const vidasRestantes = ref(6); // Máximo de vidas = 6
-const letrasUsadas = ref([]);
-const nombreIngresado = ref(false);
-const registrado = ref(false);
-const nombre = ref('');
-const adivinoPalabra = ref(false);
-
+const vidasRestantes = ref(6) // Máximo de vidas = 6
+const letrasUsadas = ref([])
+const nombreIngresado = ref(false)
+const registrado = ref(false)
+const nombre = ref('')
+const adivinoPalabra = ref(false)
 
 async function adivinar(letra) {
-  letrasUsadas.value.push(letra);
+  letrasUsadas.value.push(letra)
   try {
-    const data = await arriesgarLetra(letra);
+    const data = await arriesgarLetra(letra)
     console.log(data)
-    if(data.resultado=='LetraCorrecta') {
-      letrasCorrectas.value.push(letra);
+    if (data.resultado == 'LetraCorrecta') {
+      letrasCorrectas.value.push(letra)
       progreso.value = data.progreso
       console.log(progreso.value)
     } else {
-      vidasRestantes.value--;
+      vidasRestantes.value--
     }
-    if(data.gano){
+    if (data.gano) {
       adivinoPalabra.value = true
     }
   } catch (error) {
-    console.error("Error al adivinar la letra:", error);
+    console.error('Error al adivinar la letra:', error)
   }
 }
 
 async function registrar() {
-  try{
-    await registrarJugador({nombre: nombre.value})
-    registrado.value=true;
+  try {
+    await registrarJugador({ nombre: nombre.value })
+    registrado.value = true
   } catch (error) {
-    console.log("Error al iniciar el juego: ", error);
+    console.log('Error al iniciar el juego: ', error)
   }
 }
 
 async function jugar() {
   if (nombre.value.trim() !== '') {
-    nombreIngresado.value = true;
-    try{
-      const data = await iniciarJuego();
-      cantLetras.value = Number(data.cantidadLetras);
-      progreso.value= new Array(cantLetras.value).fill('_')
-    }catch(error){
-      console.log("Error al iniciar el juego: ", error)
+    nombreIngresado.value = true
+    try {
+      const data = await iniciarJuego()
+      cantLetras.value = Number(data.cantidadLetras)
+      progreso.value = new Array(cantLetras.value).fill('_')
+    } catch (error) {
+      console.log('Error al iniciar el juego: ', error)
     }
   }
 }
-
 </script>
-
-
-
 
 <template>
   <div class="main">
     <h1>Juego del Ahorcado</h1>
     <div v-if="!cantLetras">
-      <div v-if="!registrado" class="nombre-form animate__animated animate__fadeInDown">
+      <div
+        v-if="!registrado"
+        class="nombre-form animate__animated animate__fadeInDown"
+      >
         <label for="nombre">Ingresa tu nombre:</label>
-        <input id="nombre" v-model="nombre" placeholder="Nombre" />
+        <input
+          id="nombre"
+          v-model="nombre"
+          placeholder="Nombre"
+          data-testid="input_nombre"
+        />
         <button @click="registrar">Registrarse</button>
       </div>
 
       <div v-else class="nombre-form animate__animated animate__fadeInDown">
         <label for="nombre">Hola, {{ nombre }}!</label>
-      <button @click="jugar">Comenzar juego</button>
+        <button @click="jugar">Comenzar juego</button>
+      </div>
     </div>
-  </div>
     <div v-else class="area-juego animate__animated animate__fadeIn">
       <p class="welcome">Hola, {{ nombre }}!</p>
-      <Juego :cantLetras="cantLetras" :vidasRestantes="vidasRestantes" :letras-correctas="letrasCorrectas" />
-      <ContenedorPalabra :cantLetras="cantLetras" :letrasCorrectas="letrasCorrectas" :progreso="progreso" />
+      <Juego
+        :cantLetras="cantLetras"
+        :vidasRestantes="vidasRestantes"
+        :letras-correctas="letrasCorrectas"
+      />
+      <ContenedorPalabra
+        :cantLetras="cantLetras"
+        :letrasCorrectas="letrasCorrectas"
+        :progreso="progreso"
+      />
       <p v-if="vidasRestantes == 0">¡Perdiste!</p>
       <p v-if="adivinoPalabra">¡Ganaste!</p>
-      <Keyboard v-if="vidasRestantes > 0 && !adivinoPalabra" @adivinarLetra="adivinar" :letrasUsadas="letrasUsadas" />
+      <Keyboard
+        v-if="vidasRestantes > 0 && !adivinoPalabra"
+        @adivinarLetra="adivinar"
+        :letrasUsadas="letrasUsadas"
+      />
     </div>
   </div>
 </template>
@@ -97,11 +111,10 @@ async function jugar() {
   box-sizing: border-box;
 }
 
-#app{
+#app {
   margin: 0;
   padding: 0;
 }
-
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
