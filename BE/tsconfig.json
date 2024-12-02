@@ -12,6 +12,6 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true           
   },
-  "include": ["src", "types"],                   
+  "include": ["src/**/*.ts", "src/types/app.d.ts"],
   "exclude": ["node_modules"]             
 }

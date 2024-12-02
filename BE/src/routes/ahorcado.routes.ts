@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { NextFunction, Router, Request, Response } from "express";
 import {
   iniciarJuego,
   arriesgarLetra,
@@ -6,6 +6,22 @@ import {
 import { registrarJugador } from "../controllers/jugador.controller";
 
 const router = Router();
+
+const validarJugador = (req: Request, res: Response, next: NextFunction): void => {
+    const jugador = req.signedCookies?.jugador;
+
+    if (!jugador) {
+        res.status(401).send({ mensaje: "No autorizado" });
+        return; 
+    }
+
+    req.jugador = jugador; 
+    next(); 
+};
+
+
+
+router.use(validarJugador);
 
 router.get("/iniciar", iniciarJuego);
 router.post("/registrarse", registrarJugador);

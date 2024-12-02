@@ -9,7 +9,6 @@ export class Jugador {
     return --this._vidas;
   }
 
-  //TODO: Test
   getVidas(): number {
     return this._vidas;
   }

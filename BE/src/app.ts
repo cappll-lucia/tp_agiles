@@ -1,31 +1,21 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import ahorcadoRouter from "./routes/ahorcado.routes";
-import session from "express-session";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const app = express();
 
-app.use(
-  session({
-    secret: "secret-key",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true, 
-        secure: false,
-        sameSite: "lax", 
-    },
-  })
-);
 app.use(express.json());
 
 app.use(cors({
     origin: `${process.env.VITE_FE_URL}`,
     credentials: true, 
 }));
+
+app.use(cookieParser(process.env.SECRET_KEY || "secret-key"));
 
 app.use("/api/ahorcado", ahorcadoRouter);
 
