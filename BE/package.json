@@ -7,7 +7,7 @@
     "dev": "vite",
     "test": "jest --coverage",
     "start": "node dist/app.js",
-    "build": "tsc"
+    "build": "tsc && npm install --omit=dev"
   },
   "author": "",
   "license": "ISC",
