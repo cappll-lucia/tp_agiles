@@ -26,4 +26,12 @@ app.use((_, res) => {
   res.status(404).send({ message: "Ruta no encontrada" });
 });
 
+console.log('Frontend URL:', process.env.VITE_FE_URL);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
+
+
+
 export const viteNodeApp = app;
