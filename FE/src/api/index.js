@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 const API_URL = `${import.meta.env.VITE_API_URL}`;
 
-export function iniciarJuego() {
+export async function iniciarJuego() {
     return axios.get(`${API_URL}/iniciar`)
         .then(response => response.data)
         .catch(error => {
@@ -12,7 +12,7 @@ export function iniciarJuego() {
         });
 }
 
-export function registrarJugador(jugadorData) {
+export async function registrarJugador(jugadorData) {
     return axios.post(`${API_URL}/registrarse`, jugadorData)
         .then(response => response.data)
         .catch(error => {
@@ -21,6 +21,6 @@ export function registrarJugador(jugadorData) {
         });
 }
 
-export function arriesgarLetra(letra) {
+export async function arriesgarLetra(letra) {
   return axios.post(`${API_URL}/adivinar`, { letra }).then(response => response.data);
 }

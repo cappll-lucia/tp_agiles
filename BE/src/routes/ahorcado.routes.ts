@@ -21,10 +21,10 @@ const validarJugador = (req: Request, res: Response, next: NextFunction): void =
 
 
 
-router.use(validarJugador);
-
-router.get("/iniciar", iniciarJuego);
 router.post("/registrarse", registrarJugador);
+
+router.use(validarJugador);
+router.get("/iniciar", iniciarJuego);
 router.post("/adivinar", arriesgarLetra);
 /* router.get("/progress", verProgreso);
 router.get("/guessed-letters", mostrarLetrasArriesgadas); */
