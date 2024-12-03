@@ -11,7 +11,7 @@ export const iniciarJuego = (req: Request, res: Response) => {
   res.cookie("juego", JSON.stringify(juego), {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: "none",
         signed: true,
     });
   res.status(200).json({ cantidadLetras });
@@ -19,7 +19,6 @@ export const iniciarJuego = (req: Request, res: Response) => {
 
 export const arriesgarLetra = (req: Request, res: Response) => {
    const { letra }: { letra: string } = req.body;
-  console.log(letra)
     const juegoCookie = req.signedCookies.juego;
     if (!juegoCookie) {
         res.status(400).json({ mensaje: "No hay un juego iniciado." });
@@ -30,13 +29,11 @@ export const arriesgarLetra = (req: Request, res: Response) => {
     }
 
     const resultado = juego.arriesgarLetra(letra);
-    console.log(resultado)
-    console.log(juego.getJugador().getVidas())
-    console.log(juego.verProgreso())
+    
     res.cookie("juego", JSON.stringify(juego), {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: "none",
         signed: true,
     });
     res.status(200).json({
