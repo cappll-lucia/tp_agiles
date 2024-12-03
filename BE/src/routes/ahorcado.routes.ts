@@ -8,7 +8,9 @@ import { registrarJugador } from "../controllers/jugador.controller";
 const router = Router();
 
 const validarJugador = (req: Request, res: Response, next: NextFunction): void => {
-    const jugador = req.signedCookies?.jugador;
+  console.log("Cookies recibidas:", req.signedCookies);
+
+  const jugador = req.signedCookies?.jugador;
 
     if (!jugador) {
         res.status(401).send({ mensaje: "No autorizado" });

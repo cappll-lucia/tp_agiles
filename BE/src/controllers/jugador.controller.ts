@@ -10,9 +10,9 @@ export const registrarJugador = (req: Request, res: Response) => {
   const jugador = new Jugador(nombre);
   res.cookie("jugador", { nombre }, {
        httpOnly: true,
-       secure: process.env.NODE_ENV === "production", // Cookies seguras solo en producción
-       sameSite: "lax",
-       signed: true, // Firmar la cookie con SECRET_KEY
+       secure: process.env.NODE_ENV === "production",
+       sameSite: "none",
+       signed: true, 
   });
   res.status(201).json({ mensaje: `Jugador ${nombre} registrado`, jugador: jugador });
 };
