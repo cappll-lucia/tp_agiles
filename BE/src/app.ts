@@ -10,13 +10,15 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors({
+app.use(
+  cors({
     origin: `${process.env.VITE_FE_URL}`,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, 
-}));
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
-app.options('*', cors());
+app.options("*", cors());
 
 app.use(cookieParser(process.env.SECRET_KEY || "secret-key"));
 
@@ -28,9 +30,7 @@ app.use((_, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
-
-
 
 export const viteNodeApp = app;

@@ -7,9 +7,26 @@ import {
 
 // Ejecuta este Before solo para escenarios con el tag @registro o @juego
 Before({ tags: '@juego' }, () => {
+  let jugadorCookie
+  let juegoCookie
   cy.visit('/')
   cy.get('[data-testid="input_nombre"]').type('Facu')
   cy.contains('Registrarse').click()
+
+  cy.getCookie('jugador').then(cookie => {
+    jugadorCookie = cookie // Guarda la cookie del jugador
+  })
+  cy.getCookie('juego').then(cookie => {
+    juegoCookie = cookie // Guarda la cookie del jugador
+  })
+  if (jugadorCookie) {
+    cy.setCookie('jugador', jugadorCookie.value) // Restaura la cookie del jugador
+  }
+  if (juegoCookie) {
+    cy.setCookie('juego', juegoCookie.value) // Restaura la cookie del juego
+  }
+  cy.log(juegoCookie)
+  cy.log(jugadorCookie)
 })
 
 Given('El jugador ingresa al juego', () => {
