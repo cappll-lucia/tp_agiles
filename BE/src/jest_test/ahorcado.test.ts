@@ -146,7 +146,7 @@ describe("Obtener jugador", () => {
     const jugador = new Jugador("Lu", 3);
     const juego = new Ahorcado(jugador);
     const resultado = juego.getJugador();
-    expect(resultado.getNombre()).toBe("Luxxxxxxx");
+    expect(resultado.getNombre()).toBe("Lu");
     expect(resultado.getVidas()).toBe(3);
   });
 });
