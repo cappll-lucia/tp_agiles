@@ -49,11 +49,11 @@ jobs:
         run: |
           npm install --prefix ./BE
           npm run dev --prefix ./BE &
-          sleep 10 # Espera para asegurarse de que el servidor está listo
+          sleep 10 
 
       - name: Install and Test FE
         run: |
           npm install --prefix ./FE
           npm run dev --prefix ./FE &
-          sleep 10 # Espera para que FE esté listo
-          npm run cypress run --prefix ./FE
+          sleep 10 
+          npx cypress run --prefix ./FE
