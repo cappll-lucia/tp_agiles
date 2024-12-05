@@ -53,7 +53,8 @@ jobs:
 
       - name: Install and Test FE
         run: |
-          npm install --prefix ./FE
-          npm run dev --prefix ./FE &
+          cd FE
+          npm install 
+          npm run dev &
           sleep 10 
-          npx cypress run --prefix ./FE
+          npx cypress run
