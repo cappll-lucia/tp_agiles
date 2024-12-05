@@ -1,4 +1,4 @@
-name: Run Tests for Monorepo
+name: CI/CD for Monorepo
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
       - main
 
 jobs:
+
 
   be-tests:
     name: Run BE Tests
@@ -21,22 +22,20 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22 
+          node-version: 22
 
       - name: Install and Test BE
         working-directory: ./BE
-        env: 
+        env:
           NODE_ENV: development
         run: |
           npm install
           npm run test
 
- 
+
   fe-tests:
     name: Run FE Tests
     runs-on: ubuntu-latest
-
-    needs: be-tests 
 
     steps:
       - name: Checkout Repository
@@ -45,22 +44,59 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22 
+          node-version: 22
 
       - name: Install and Start BE
-        env: 
+        env:
           NODE_ENV: development
         run: |
           npm install --prefix ./BE
           npm run dev --prefix ./BE &
-          sleep 10 
+          sleep 10
 
       - name: Install and Test FE
-        env: 
+        env:
           NODE_ENV: development
         run: |
           cd FE
-          npm install 
+          npm install
           npm run dev &
-          sleep 10 
+          sleep 10
           npx cypress run
+
+ 
+  deploy-be:
+    name: Deploy BE to Railway
+    runs-on: ubuntu-latest
+    needs: be-tests 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          curl -X POST \
+          -H "Authorization: Bearer $RAILWAY_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{}' \
+          https://railway.app/api/deploy/YOUR_PROJECT_ID
+
+
+  deploy-fe:
+    name: Deploy FE to Netlify
+    runs-on: ubuntu-latest
+    needs: fe-tests 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npx netlify deploy --dir=./FE/dist --prod
