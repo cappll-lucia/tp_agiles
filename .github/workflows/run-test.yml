@@ -104,6 +104,10 @@ jobs:
         run: |
           npm install
 
+      - name: Install Netlify CLI
+        run: |
+          npm install -g netlify-cli
+
       - name: Build FE
         working-directory: ./FE
         run: |
