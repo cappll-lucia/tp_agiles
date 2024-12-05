@@ -93,6 +93,21 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      
+      - name: Install Dependencies
+        working-directory: ./FE
+        run: |
+          npm install
+
+      - name: Build FE
+        working-directory: ./FE
+        run: |
+          npm run build
 
       - name: Deploy to Netlify
         env:
