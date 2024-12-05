@@ -25,6 +25,8 @@ jobs:
 
       - name: Install and Test BE
         working-directory: ./BE
+        env: 
+          NODE_ENV: development
         run: |
           npm install
           npm run test
@@ -46,12 +48,16 @@ jobs:
           node-version: 22 
 
       - name: Install and Start BE
+        env: 
+          NODE_ENV: development
         run: |
           npm install --prefix ./BE
           npm run dev --prefix ./BE &
           sleep 10 
 
       - name: Install and Test FE
+        env: 
+          NODE_ENV: development
         run: |
           cd FE
           npm install 
