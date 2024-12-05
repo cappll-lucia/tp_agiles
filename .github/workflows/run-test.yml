@@ -30,7 +30,7 @@ jobs:
           NODE_ENV: development
         run: |
           npm install
-          npm run test
+          npm run test || exit 1
 
 
   fe-tests:
