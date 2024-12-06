@@ -18,6 +18,8 @@ app.use(
   })
 );
 
+/* */
+
 app.options("*", cors());
 
 app.use(cookieParser(process.env.SECRET_KEY || "secret-key"));
