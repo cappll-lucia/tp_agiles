@@ -104,6 +104,11 @@ jobs:
         run: |
           npm install
 
+      - name: Overwrite .env Variable
+        working-directory: ./FE
+        run: |
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env
+
       - name: Install Netlify CLI
         run: |
           npm install -g netlify-cli
