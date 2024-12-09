@@ -10,9 +10,12 @@ const app = express();
 
 app.use(express.json());
 
+const allowed = process.env.VITE_FE_URL
+console.log('---> ', allowed)
+
 app.use(
   cors({
-    origin: `${process.env.VITE_FE_URL}`,
+    origin: process.env.VITE_FE_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
