@@ -60,7 +60,7 @@ async function jugar() {
 
 <template>
   <div class="main">
-    <h1>Juego del Ahorcado</h1>
+    <h1>- Juego del Ahorcado -</h1>
     <div v-if="!cantLetras">
       <div
         v-if="!registrado"
