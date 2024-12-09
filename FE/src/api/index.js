@@ -21,6 +21,7 @@ export async function registrarJugador(jugadorData) {
         headers: {
             'Content-Type': 'application/json', 
         },
+        withCredentials: true,
         })
         .then(response => response.data)
         .catch(error => {

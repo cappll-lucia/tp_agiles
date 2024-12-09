@@ -17,6 +17,7 @@ app.use(
   cors({
     origin: process.env.VITE_FE_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
