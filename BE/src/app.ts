@@ -34,5 +34,11 @@ app.use((_, res) => {
   res.status(404).send({ message: "Ruta no encontrada" });
 });
 
+if(process.env.NODE_ENV === "production"){
+  const PORT = process.env.PORT || 8080; 
+  app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+  });
+}
 
 export const viteNodeApp = app;
