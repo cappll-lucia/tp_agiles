@@ -28,6 +28,8 @@ jobs:
         working-directory: ./BE
         env:
           NODE_ENV: development
+          VITE_FE_URL: 'http://localhost:5173'
+          SECRET_KEY: '128e1f7032b5082fcda953ff8311e39468d5dc6d8b7739456f3967ceb6cac3b391695b2e0126fbfbaa2445eaed37e3b9a154b073697d3d7a8fdc588de69bdf57'
         run: |
           npm install
           npm run test || exit 1
@@ -48,6 +50,8 @@ jobs:
 
       - name: Install and Start BE
         env:
+          VITE_FE_URL: 'http://localhost:5173'
+          SECRET_KEY: '128e1f7032b5082fcda953ff8311e39468d5dc6d8b7739456f3967ceb6cac3b391695b2e0126fbfbaa2445eaed37e3b9a154b073697d3d7a8fdc588de69bdf57'
           NODE_ENV: development
         run: |
           npm install --prefix ./BE
