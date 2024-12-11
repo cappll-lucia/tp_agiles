@@ -41,7 +41,7 @@ When('Ingresa su nombre y se registra', () => {
 
 Then('Debería ver un mensaje de bienvenida con su nombre', () => {
   // Verifica que el saludo contenga el nombre "Facu"
-  cy.contains('Hola, Facu!').should('be.visible')
+  cy.contains('Hola, Facuxxxx!').should('be.visible')
 })
 
 When('El jugador inicia un juego', () => {
