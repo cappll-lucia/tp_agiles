@@ -106,7 +106,7 @@ describe("Obtener Nombre", () => {
   it("debería devolver el nombre  del jugador", () => {
     const jugador = new Jugador("Lu", 5);
     const vidas = jugador.getNombre();
-    expect(vidas).toBe("Luxxxxxxxx");
+    expect(vidas).toBe("Lu");
   });
 });
 
